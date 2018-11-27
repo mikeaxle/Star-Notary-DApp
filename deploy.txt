@@ -1,0 +1,6 @@
+New star tx#: 0xfdef778d8757869949378b7d99ced3bae83d55f0a2e5603cb520c8bcab9a321d
+New star token id: 1
+
+
+Star Notary contract address: 0x8062cFFB0a0E6DF9a16f853DCef260125D72c6B0
+Star Notary contract tx#: 0x40fef627a0c6c6e4ed6cd6b4136fdf5e11614bded60430a110b4dec6aeb010ae
