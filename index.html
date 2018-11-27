@@ -114,11 +114,20 @@
     </div>
 
     <script>
+        // networks object
+        let networks = {
+            mainnet: 'https://mainnet.infura.io/v3/1e14f57075b14a15b7ad54c6ab230ef5',
+            ropsten: 'https://ropsten.infura.io/v3/1e14f57075b14a15b7ad54c6ab230ef5',
+            kovan: 'https://kovan.infura.io/v3/1e14f57075b14a15b7ad54c6ab230ef5',
+            rinkeby: 'https://rinkeby.infura.io/v3/1e14f57075b14a15b7ad54c6ab230ef5',
+            ganache: 'http://127.0.0.1:7545'
+        }
+
         if (typeof web3 != 'undefined') {
             web3 = new Web3(web3.currentProvider) // what Metamask injected 
         } else {
-            // Instantiate and set Ganache as your provider
-            web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
+            // Instantiate and your provider
+            web3 = new Web3(new Web3.providers.HttpProvider(networks.rinkeby));
         }
 
         // The default (top) wallet account from a list of test accounts 
@@ -482,7 +491,7 @@
             ]
         );
         // Grab the contract at specified deployed address with the interface defined by the ABI
-        var starNotary = StarNotary.at('0x2bDF3DA8EF8b32B5a27F4b718eF2f5146BcaCc7c');
+        var starNotary = StarNotary.at('0x8062cFFB0a0E6DF9a16f853DCef260125D72c6B0');
 
         // register new star
         function registerStar() {
@@ -500,7 +509,7 @@
                 err, res) => {
                     // if successful 
                 if (!err) {
-                    alert(`New star added! \n${newStar}`)
+                    alert(`New star added! \nid: ${newStar.id} \nname: ${newStar.name} \nstar story: ${newStar.starStory} \nra: ${newStar.ra} \ndec: ${newStar.dec} \nmag: ${newStar.mag}`)
 
                     // update UI
                     document.getElementById('star-id').value = null
