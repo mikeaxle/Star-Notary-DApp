@@ -7,14 +7,34 @@ body {
     width: 50%;
     margin: 0 auto;
 }
+.column {
+
+}
 .bold { 
     font-weight: bolder;
+    font-size: larger;
 }
 .row {
-    margin-bottom:10px;
+    margin-bottom:5px;
+    margin-top:5px;
+    display: flex;
+    align-items: center;
 }
 button {
     margin: 2em 0;
     padding: 1em 4em;
-    display:block;
+    /* display: flex; */
+    width: 100%
 }
+
+input {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid teal;
+    border-radius: 4px;
+}
+.spacer {
+    flex-grow: 1;
+  }
