@@ -9,9 +9,22 @@ contract('StarNotary', accounts => {
     describe('can create a star', () => { 
         it('can create a star and get its name', async function () { 
             
-            await this.contract.createStar('awesome star!', 1, {from: accounts[0]})
+            await this.contract.createStar('awesome star!', 'this is my star', '11', '12', '13', 1, {from: accounts[0]})
 
-            assert.equal(await this.contract.tokenIdToStarInfo(1), 'awesome star!')
+            let starName = await this.contract.tokenIdToStarInfo(1)
+
+            assert.equal(starName[0],'awesome star!')
+        })
+
+        it('Only unique star coordinates allowed', async function (){
+            await this.contract.createStar('awesome star!', 'this is my star', '11', '12', '13', 1, {from: accounts[0]})
+
+            await this.contract.createStar('mike star', 'I own this', '14', '15', '17', 2, {from: accounts[1]})
+
+            let star1 = await this.contract.tokenIdToStarInfo(1)
+            let star2 = await this.contract.tokenIdToStarInfo(2)
+
+            assert(star1[2] + star1[3] + star1[4]  != star2[2] + star2[3] + star2[4])
         })
     })
 
@@ -24,7 +37,7 @@ contract('StarNotary', accounts => {
         let starPrice = web3.toWei(.01, "ether")
 
         beforeEach(async function () { 
-            await this.contract.createStar('awesome star!', starId, {from: user1})    
+            await this.contract.createStar('awesome star!', 'this is my star', '11', '12', '13', starId, {from: user1})    
         })
 
         it('user1 can put up their star for sale', async function () { 
