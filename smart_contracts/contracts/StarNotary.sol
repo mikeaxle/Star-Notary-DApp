@@ -30,6 +30,9 @@ contract StarNotary is ERC721 {
     /// @param _mag star coordinate (meta-data)
     /// @param _tokenId token Id of star
     function createStar(string _name, string _starStory, string _ra, string _dec, string _mag, uint256 _tokenId) public { 
+        // verify unique token id
+        require(checkUniqueTokenId(_tokenId), "A star with that token ID already exists");
+        
         // create new star 
         Star memory newStar = Star(_name, _starStory, _ra, _dec, _mag);
 
@@ -52,9 +55,19 @@ contract StarNotary is ERC721 {
     /// @notice checks if the concactinated star coordinate value is unique
     /// @param _string concatinated star coordinates (meta-data)
     /// @return trueness of uniqueness of coordinates
-    // todo: add check for unique tokenId
     function checkUniqueCoordinates(string memory _string) private view returns (bool isUnique) {
         return  ( usedStarCoordinates[_string] != true);
+    }
+
+    /// @notice checks if the tokenId is unique
+    /// @param _tokenId id of star token
+    /// @return trueness of uniqueness of coordinates
+    function checkUniqueTokenId(uint256 _tokenId) private view returns (bool isUnique) {
+        // get star from mapping with matching tokenId
+        Star memory _star = tokenIdToStarInfo[_tokenId];
+
+        // check if star has the name property set
+        return (bytes(_star.name).length == 0);
     }
 
     function putStarUpForSale(uint256 _tokenId, uint256 _price) public { 
