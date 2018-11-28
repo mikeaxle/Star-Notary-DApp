@@ -14,6 +14,12 @@ The DApp allows users to register a star, put up a star for sale and buy a star 
 - Web3js (connection to wallet)
 - Ethereum (Rinkeby)
 
-## Setup
+## Setup DApp front end
 - Download reposity
 - Open 'index.html'
+
+## Setup DApp api
+- Open terminal/ command line
+- cd into 'api' directory
+- run 'node api.js'
+- use POSTMAN to test
